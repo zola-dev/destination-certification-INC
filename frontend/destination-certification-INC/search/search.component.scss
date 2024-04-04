@@ -1,0 +1,18 @@
+@import '../global/fa-solid-blue-gray.scss';
+#serechToDo{
+    transform: translate(0,-16vh);
+    transition: .3s;
+    width: 60vh;
+  }
+.fa-magnifying-glass{
+  left: 2vw;
+  }
+input{
+    height: 4vh;
+    width: 29vw;
+    border-radius: .4vw;
+    padding-left: 4vw;
+    outline: none;
+    border: none;
+    caret-color: $muted;
+}

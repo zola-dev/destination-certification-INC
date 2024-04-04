@@ -1,0 +1,13 @@
+$danger: #ff5d5d;
+$muted: #919191;
+.fa-x{
+    color:$muted;
+    font-size: 2vh;
+    position: absolute;
+    right: 1vh;
+    top: 1vh;
+    z-index: 1021;
+    &:hover{
+        color:$danger;
+    }
+  }

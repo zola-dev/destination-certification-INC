@@ -1,0 +1,16 @@
+.hideGlobal{
+    pointer-events: none;
+    opacity: 0;
+    filter: blur(5px);
+    color: transparent;
+    background: transparent;
+    //transform: rotateY(90deg);
+    transition: .3s ease-out; 
+   } 
+.globalShow{
+    pointer-events:all;
+    opacity: 1;
+    filter: blur(0px);
+    //transform: rotateY(0deg);
+    transition: .3s ease-out;
+   }

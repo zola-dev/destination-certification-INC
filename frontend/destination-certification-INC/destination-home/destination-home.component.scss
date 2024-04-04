@@ -1,0 +1,22 @@
+@import '../global/commonCl.scss';
+@import '../global/fa-x-gray-red.scss';
+$purple: #800080;
+$font-primary: 'Roboto', sans-serif;  
+.expireTxt,.expireRed{
+    font-size: 1.2vw;
+    position: relative;
+    color: $purple;
+    font-weight: 700;
+    font-family: $font-primary;
+  }
+  .expireRed{
+    color: $danger;
+  }
+  .expire{
+    position: relative;
+    color: $muted;
+    font-size: 1.2vw;
+    font-weight: 600;
+    font-family: $font-primary;
+  }
+

@@ -1,0 +1,18 @@
+<div
+  id="serechToDo"
+  class="bg-light rounded border border-light d-flex align-items-center justify-content-center position-relative"
+>
+  <div class="fw-bold fa-solid fa-magnifying-glass position-absolute"></div>
+  <form [formGroup]="searchToDoForm">
+    <input
+      spellcheck="false"
+      autocomplete="off"
+      placeholder="Search"
+      formControlName="search"
+      autocomplete="off"
+      (input)="type()"
+    />
+  </form>
+</div>
+
+

@@ -1,0 +1,18 @@
+@import '../global/commonCl.scss';
+@import '../global/check-xmark.scss';
+@import '../global/fa-solid-blue-gray.scss';
+.typing{
+    margin-left: 5vw;
+}
+#table_1{
+    z-index: 2;
+}
+.fa-trash{
+    color:$muted;
+    &:hover{
+        color:$danger;
+    }
+}
+
+
+

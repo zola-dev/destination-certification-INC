@@ -1,0 +1,129 @@
+<div
+  id="table_{{ config.id }}"
+  [ngClass]="this.showTable ? 'globalShow' : 'hideGlobal'"
+  class="bg-light h-100 rounded shadow border border-light position-relative"
+>
+  <div
+    id="title_{{ config.id }}"
+    class="p-3 w-100 bg-white fw-bold d-flex align-items-center"
+    [ngStyle]="{
+      height: this.rowHeight,
+      'font-size': this.fontSize
+    }"
+  >
+    {{ config.title }}
+    <div
+    *ngIf="this.dataSource"
+      class="typing fw-lighter"
+      [ngClass]="
+        this.appState.typing 
+        &&this.dataSource
+        &&this.tempArr &&
+        this.dataSource.length != this.tempArr.length
+          ? 'globalShow'
+          : 'hideGlobal'
+      "
+    >
+      Searching results: {{ this.dataSource.length }}
+    </div>
+    <div
+      (click)="searchTable()"
+      class="fa-solid fa-magnifying-glass position-fixed"
+      [ngStyle]="{
+        right: this.scrollWidth
+      }"
+    ></div>
+    <div
+      (click)="addItem()"
+      class="fa-solid fa-plus position-fixed"
+      [ngStyle]="{
+        right: this.headerBtn
+      }"
+    ></div>
+  </div>
+  <thead
+    id="thead_{{ config.id }}"
+    class="sticky-top top-0 align-middle"
+    [ngStyle]="{
+      height: this.rowHeight,
+      'font-size': this.fontSize
+    }"
+  >
+    <tr>
+      <th
+        id="title_{{ c }}{{ config.id }}"
+        class="fw-normal p-3 position-sticky"
+        [ngStyle]="{
+          width: this.rowWidth,
+          height: this.rowHeight,
+          'margin-right':
+            c == this.config.clickable.field ? this.scrollWidth : '0'
+        }"
+        class="p-3"
+        *ngFor="let c of this.titles"
+        [ngClass]="{
+          'd-flex justify-content-center align-items-center':
+            c == this.config.clickable.field
+        }"
+      >
+        {{ c }}
+      </th>
+    </tr>
+  </thead>
+  <cdk-virtual-scroll-viewport
+    itemSize="{{ this.rowHeightPx }}"
+    minBufferPx="{{ this.rowHeightPx }}*{{ this.config.rowNO }}"
+    maxBufferPx="{{ this.rowHeightPx }}*{{ this.config.rowNO }}*2"
+    id="scroll_viewport{{ config.id }}"
+    [ngStyle]="{
+      height: this.viewport
+    }"
+    #Table
+  >
+    <table class="w-100 table table-hover align-middle">
+      <tbody>
+        <tr
+          *cdkVirtualFor="let d of this.dataSource; let index = index"
+          class="fw-bold bg-white"
+          [ngStyle]="{
+            height: this.rowHeight,
+            'font-size': this.fontSize
+          }"
+        >
+          <td
+            id="td{{ index }}{{ k }}{{ config.id }}"
+            class="p-3 fw-lighter position-relative"
+            [ngStyle]="{ width: this.rowWidth }"
+            *ngFor="let k of this.ObjKeys"
+          >
+            <div *ngIf="k != this.config.clickable.field">
+              {{ this.dataSource[index][k] }}
+            </div>
+            <div
+              *ngIf="k == this.config.clickable.field"
+              class="d-flex justify-content-center"
+            >
+              <div
+                id="{{ this.config.clickable.id }}"
+                class="{{ this.config.clickable.button.cl }}"
+                [ngClass]="[
+                  this.dataSource[index][k]
+                    ? this.config.clickable.button.true
+                    : this.config.clickable.button.false
+                ]"
+                (click)="submit(this.dataSource[index])"
+              ></div>
+              <div
+                (click)="this.deleteItem(this.dataSource[index])"
+                [ngStyle]="{
+                  right: this.scrollWidth
+                }"
+                class="fa-solid fa-trash position-absolute"
+              ></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </cdk-virtual-scroll-viewport>
+</div>

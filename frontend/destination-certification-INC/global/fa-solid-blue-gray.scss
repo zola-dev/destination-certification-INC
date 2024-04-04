@@ -1,0 +1,12 @@
+$transition: .3 ease-out; 
+$muted: #919191;
+$app-main-blue: #28529f;
+
+.fa-solid{
+    font-size: 2vh;
+    color:$muted;
+    transition: $transition;
+    &:hover{
+        color:$app-main-blue;
+    }
+}
