@@ -8,9 +8,7 @@
 1. **Main Component: destination-home**
      - This component is stand alone and is **lazy-loaded**.
      - Within **destination-home**, there's a child component called **table**, which loads immediately.
-     - **destination-home** includes two other lazy-loaded components:
-     - **add-component**
-     - **search-component**
+     - **destination-home** includes two other lazy-loaded components: **add-component** and **search-component**
      - These components load dynamically when the user clicks the plus or search icon within the table.
 
 2. **Animations with GSP**
