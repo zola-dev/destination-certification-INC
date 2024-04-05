@@ -37,7 +37,8 @@ The TokenInterceptor is an Angular HTTP interceptor that enhances outgoing HTTP 
 In conclusion, this assignment has been crafted with the intention of enabling straightforward feature implementation and efficient service reuse. 
 
 
-**Backend Overview: A Node.js Server with Next.js**
+**Backend Overview:** 
+A Node.js Server with Next.js
 Our backend is powered by a Node.js server that runs the Next.js dist. Here are the key components:
 
 1. **Routes:**
