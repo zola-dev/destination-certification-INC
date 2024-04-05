@@ -31,7 +31,7 @@
    - The services API and local storage are intentionally separated.
    - This design allows us to introduce additional features (such as websockets) independently and with ease.
 
-In conclusion, this assignment has been crafted with the intention of enabling straightforward feature implementation and efficient service reuse. 
+In conclusion, this assignment has been crafted with the intention of enabling feature implementation and efficient service reuse. 
 
 
 **Backend Overview:** 
