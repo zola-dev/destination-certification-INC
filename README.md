@@ -40,11 +40,11 @@ In conclusion, this assignment has been crafted with the intention of enabling s
 **Backend Overview:** 
 
 A Node.js Server with Next.js
-Our backend is powered by a Node.js server that runs the Next.js dist. Here are the key components:
+Node.js server runs the Next.js dist these are the key components:
 
 1. **Routes:**
 
-- **Login:** Handles user authentication.
+   - **Login:** Handles user authentication.
 
 - **Update**: Allows modification of existing data.
 
