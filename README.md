@@ -53,5 +53,5 @@ In conclusion, this assignment has been crafted with the intention of enabling s
 
 - **NextCors:** Enables Cross-Origin Resource Sharing (CORS) for seamless communication with our frontend.
 
-   -In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
+- In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
 
