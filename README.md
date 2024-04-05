@@ -6,7 +6,7 @@
 -  The frontend comprises the **destination-certification-INC** folder from my project. It directly corresponds to the assignment requirements. Let's delve into the details:
 
 1. **Main Component: destination-home**
-   - This component stands alone and is **lazy-loaded**.
+   - This component is stand alone and is **lazy-loaded**.
    - Within **destination-home**, there's a child component called **table**, which loads immediately.
    - Additionally, **destination-home** includes two other lazy-loaded components:
      - **add-component**
@@ -53,5 +53,5 @@ In conclusion, this assignment has been crafted with the intention of enabling s
 
 - **NextCors:** Enables Cross-Origin Resource Sharing (CORS) for seamless communication with our frontend.
 
-- In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
+ - In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
 
