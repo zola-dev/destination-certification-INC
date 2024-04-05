@@ -48,7 +48,7 @@ In conclusion, this assignment has been crafted with the intention of enabling f
 
    - **Add:** Adds new data entries.
 
-**Middleware:**
+2. **Middleware:**
 
    - **dotenv:** For managing environment variables.
 
