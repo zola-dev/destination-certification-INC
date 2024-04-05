@@ -3,7 +3,7 @@
 
 **Frontend Structure: A Brief Overview**
 
-- The frontend comprises the **destination-certification-INC** folder from my project. It directly corresponds to the assignment requirements. Let's delve into the details:
+-  The frontend comprises the **destination-certification-INC** folder from my project. It directly corresponds to the assignment requirements. Let's delve into the details:
 
 1. **Main Component: destination-home**
    - This component stands alone and is **lazy-loaded**.
