@@ -51,11 +51,11 @@ In conclusion, this assignment has been crafted with the intention of enabling s
 
 **Middleware:**
 
-- **dotenv:** For managing environment variables.
+   - **dotenv:** For managing environment variables.
 
-- **jsonwebtoken:** Facilitates secure token-based authentication.
+   - **jsonwebtoken:** Facilitates secure token-based authentication.
 
-- **NextCors:** Enables Cross-Origin Resource Sharing (CORS) for seamless communication with our frontend.
+   - **NextCors:** Enables Cross-Origin Resource Sharing (CORS) for seamless communication with our frontend.
 
 In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
 
