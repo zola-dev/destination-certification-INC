@@ -1,7 +1,7 @@
 # destination-certification-INC
 
 
-**Frontend Structure: A Brief Overview**
+**Frontend Structure: A Brief Overview:**
 
 **destination-certification-INC** folder from my project directly corresponds to the assignment requirements. Let's delve into the details:
 
@@ -39,8 +39,7 @@ In conclusion, this assignment has been crafted with the intention of enabling s
 
 **Backend Overview:** 
 
-A Node.js Server with Next.js
-Node.js server runs the Next.js dist these are the key components:
+**Node.js** server runs the **Next.js** dist these are the key components:
 
 1. **Routes:**
 
