@@ -46,11 +46,11 @@ Node.js server runs the Next.js dist these are the key components:
 
    - **Login:** Handles user authentication.
 
-- **Update**: Allows modification of existing data.
+   - **Update**: Allows modification of existing data.
 
-- **Delete:** Removes records from our system.
+   - **Delete:** Removes records from our system.
 
-- **Add:** Adds new data entries.
+   - **Add:** Adds new data entries.
 
 **Middleware:**
 
