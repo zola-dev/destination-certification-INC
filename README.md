@@ -26,7 +26,6 @@
 5. **TokenInterceptor :**
    - When a request is made, the interceptor checks if a user token exists in the local storage.
    - If a token is found, it injects it into the request headers as an Authorization bearer token.
-   - Error Handling: The interceptor captures any HTTP errors (such as 401 or 403 status codes).
 
 6. **Separation of Concerns**
    - The services API and local storage are intentionally separated.
