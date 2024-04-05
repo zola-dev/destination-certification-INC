@@ -58,7 +58,7 @@ In conclusion, this assignment has been crafted with the intention of enabling f
 
 In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
 
-****Explore the Assignment from Link below for Testing****
+****Explore the Assignment from Link below for testing****
 
 ****https://www.shebs-braids.area36000.com/destination-certification-INC?authKey=zaYp7RlaY****
 
