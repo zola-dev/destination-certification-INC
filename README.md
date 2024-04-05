@@ -17,7 +17,7 @@
 3. **Service Organization**
    - Services are thoughtfully divided for ease of testing.
    - We've structured them to facilitate the implementation of new features and reusability.
-   - Notably, some services that aren't immediately required are **lazy-loaded on demand**.
+   - Notably, some services that aren't immediately required are **lazy-loaded** on demand.
 
 4. **Data Management**
    - Data from the database is stored in local storage.
