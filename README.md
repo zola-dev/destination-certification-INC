@@ -25,11 +25,11 @@
    - TokenInterceptor
 The TokenInterceptor is an Angular HTTP interceptor that enhances outgoing HTTP requests. Its primary responsibilities include:
 
-Token Injection:
-When a request is made, the interceptor checks if a user token exists in the local storage.
-If a token is found, it injects it into the request headers as an Authorization bearer token.
+**Token Injection:**
+- When a request is made, the interceptor checks if a user token exists in the local storage.
+- If a token is found, it injects it into the request headers as an Authorization bearer token.
 Error Handling:
-The interceptor captures any HTTP errors (such as 401 or 403 status codes).
+- The interceptor captures any HTTP errors (such as 401 or 403 status codes).
 
 5. **Separation of Concerns**
    - The services API and local storage are intentionally separated.
