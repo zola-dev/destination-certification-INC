@@ -3,7 +3,7 @@
 
 **Frontend Structure: A Brief Overview**
 
-The frontend comprises the **destination-certification-INC** folder from my project. It directly corresponds to the assignment requirements. Let's delve into the details:
+- The frontend comprises the **destination-certification-INC** folder from my project. It directly corresponds to the assignment requirements. Let's delve into the details:
 
 1. **Main Component: destination-home**
    - This component stands alone and is **lazy-loaded**.
@@ -11,10 +11,10 @@ The frontend comprises the **destination-certification-INC** folder from my proj
    - Additionally, **destination-home** includes two other lazy-loaded components:
      - **add-component**
      - **search-component**
-   - These components load dynamically when the user clicks the plus or search icon within the table.
+     - These components load dynamically when the user clicks the plus or search icon within the table.
 
 2. **Animations with GSP**
-   - I've employed **GSP (GreenSock Animation Platform)** for animations.
+    - I've employed **GSP (GreenSock Animation Platform)** for animations.
 
 3. **Service Organization**
    - Services are thoughtfully divided for ease of testing.
@@ -53,5 +53,5 @@ In conclusion, this assignment has been crafted with the intention of enabling s
 
 - **NextCors:** Enables Cross-Origin Resource Sharing (CORS) for seamless communication with our frontend.
 
-In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
+- In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
 
