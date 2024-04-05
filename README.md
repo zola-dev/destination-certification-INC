@@ -22,10 +22,8 @@
 4. **Data Management**
    - Data from the database is stored in local storage.
    - We manage this data using the **StateManagementService**.
-   - TokenInterceptor
-The TokenInterceptor is an Angular HTTP interceptor that enhances outgoing HTTP requests. Its primary responsibilities include:
 
-5. **Token Injection:**
+5. **TokenInterceptor :**
    - When a request is made, the interceptor checks if a user token exists in the local storage.
    - If a token is found, it injects it into the request headers as an Authorization bearer token.
    - Error Handling: The interceptor captures any HTTP errors (such as 401 or 403 status codes).
