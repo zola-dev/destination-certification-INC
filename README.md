@@ -3,12 +3,12 @@
 
 **Frontend Structure: A Brief Overview**
 
-The frontend comprises the **destination-certification-INC** folder from my project. It directly corresponds to the assignment requirements. Let's delve into the details:
+**destination-certification-INC** folder from my project directly corresponds to the assignment requirements. Let's delve into the details:
 
 1. **Main Component: destination-home**
-   - This component is stand alone and is **lazy-loaded**.
-   - Within **destination-home**, there's a child component called **table**, which loads immediately.
-   - Additionally, **destination-home** includes two other lazy-loaded components:
+     - This component is stand alone and is **lazy-loaded**.
+     - Within **destination-home**, there's a child component called **table**, which loads immediately.
+     - **destination-home** includes two other lazy-loaded components:
      - **add-component**
      - **search-component**
      - These components load dynamically when the user clicks the plus or search icon within the table.
