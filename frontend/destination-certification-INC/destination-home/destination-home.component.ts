@@ -5,6 +5,9 @@ import { TimerService } from '../services/timer.service';
 import { CommonModule } from '@angular/common';
 import { StateManagementService } from '../services/state-management.service';
 import { TableComponent } from '../table/table.component';
+import { ToDo } from '../interfaces/index';
+import { defaultConfig } from '../global-constants/defaultConfig'
+
 @Component({
   selector: 'app-destination-home',
   templateUrl: './destination-home.component.html',
@@ -20,13 +23,11 @@ export class DestinationHomeComponent implements OnInit, OnDestroy {
   public tokenTimer:any;
   @ViewChild("addToDo", { read: ViewContainerRef }) containerAddToDo: ViewContainerRef;
   @ViewChild("serechToDo", { read: ViewContainerRef }) containerSerechToDo: ViewContainerRef;
-  // @ViewChild("addToDoTable", { read: ViewContainerRef }) containerAddToDoTable: ViewContainerRef;
-  public toDo:any=[];
-  public tempArr:any=[];
+  public toDo:ToDo[]|null=[];
+  public tempArr:ToDo[]|null=[];
   public config:any;
-  public tableheight={value:50,unit:'vh',container:'55vh'};
   public appState:any;
-
+  toDoConfig=defaultConfig
   constructor(
     private weLoveLazy:WeLoveLazyService,
     @Inject(STATE_SERVICE_TOKEN) private state: StateManagementService,
@@ -40,16 +41,17 @@ export class DestinationHomeComponent implements OnInit, OnDestroy {
       this.timer.startTimer();
     }else{
       this.queryAuth();
-      this.state.saveData('appState',{add:false,serech:false,typing :false});
-    }
-    this.state.tokenTimerCast$.subscribe(token => this.tokenTimer = token);
+      // smooth scrolling, 20 transparent fade , animacija
+    }//unsubscribe
+    this.state.tokenTimerCast$.subscribe(tokenTimer => this.tokenTimer = tokenTimer);
     this.state.toDoCast$.subscribe(toDo => this.toDo = toDo);
-    this.state.appStateCast$.subscribe(toDo => this.appState = toDo);
+    this.state.appStateCast$.subscribe(appState => this.appState = appState);
     this.state.tempArrCast$.subscribe((tempArr) => {this.tempArr = tempArr});
-    if(this.appState.typing){
+    if(this.appState&&this.appState.typing){
       this.handleRefresh();
     }
-    this.table(this.tableheight);
+    this.state.saveData('appState',defaultConfig.appState);
+    this.tableConfig();
   }
   async queryAuth(){
     (await this.weLoveLazy.queryAuth).execute();
@@ -59,71 +61,47 @@ export class DestinationHomeComponent implements OnInit, OnDestroy {
   }
   async handleRowClicked(e){
     (await this.weLoveLazy.updateToDoService).execute({
-      item:{id:e.id,update:!e.completed},   
-      array:{toDo:this.toDo}
+      item:{id:e.id,completed:!e.completed},   
+      array:{toDo:this.toDo},
     });
   }
-  async handleAddItem(e){
-    console.log("handleaddItem:", e);
-    (await this.weLoveLazy.addDoToComponent).create("addToDo",{toDo:this.toDo,appState:this.appState},this.containerAddToDo);
+  async handleAddItem(){
     this.appState.add=!this.appState.add;
     this.state.saveData('appState',this.appState);
+    (await this.weLoveLazy.addDoToComponent).create(
+      "addToDo",
+    {
+      toDo:this.toDo,
+      appState:this.appState,
+    },
+    this.containerAddToDo);
   }
-  async handleSearchTable(e){
-    console.log("handlesearchTable:", e);
-    (await this.weLoveLazy.searchComponent).create("serechToDo",{toDo:this.toDo,appState:this.appState},this.containerSerechToDo);
+  async handleSearchTable(){
     this.appState.serech=!this.appState.serech;
     this.state.saveData('appState',this.appState);
+    (await this.weLoveLazy.searchComponent).create(
+      "serechToDo",
+    {
+      toDo:this.toDo,
+      appState:this.appState
+    },
+    this.containerSerechToDo); 
   }
   async handleDeleteItem(e){
-    console.log("handleDeleteItem:", e);
     (await this.weLoveLazy.deleteToDoService).execute({
       item:{id:e.id},   
-      array:{toDo:this.toDo}
+      array:{toDo:this.toDo},
     });
   }
-  table(data){
-    //  this.config = this.tablelConfigs.doDoConfig({value:this.tableheight.value,unit:this.tableheight.unit});
- 
-    this.config = { 
-      id:'1',
-      title: 'toDo Table',
-       width: {
-         "value": 50,
-         "unit": "vw"
-       },
-      //    height: {
-      //    "value": data.value,
-      //    "unit": data.unit,
-      //  },
-       height: {
-         "value": this.tableheight.value,
-         "unit": this.tableheight.unit
-       },
-      //rename Titles
-      columns : [
-       { title: 'userName', targetField:'name' },
-       { title: 'userId', targetField:'id' },
-       ],
-      rowNO:5,
-      clickable:{
-       id: 'completed',
-       field:'completed',
-       button :
-       {
-         cl:'fa-regular',
-         true:'fa-circle-check',
-         false:'fa-circle-xmark'
-       },
-      }
-      };
+  async tableConfig(){
+    this.config = this.state.getLS(defaultConfig.toDoConfig.config.name);
+    if(!this.config){
+      this.config = (await this.weLoveLazy.tableConfigs).tableConfig(defaultConfig.toDoConfig.config);
+    }
+    this.state.toDoConfigCast$.subscribe(toDoConfig => this.config = toDoConfig);
   }
-   handleRefresh(){
-      this.tempArr=this.state.getLS("tempArr");
-      this.state.saveData('toDo',this.tempArr);
-      this.state.saveData('tempArr',null);
-      this.appState={add:false,serech:false,typing:false}
-      this.state.saveData('appState',this.appState);       
+   async handleRefresh(){
+    (await this.weLoveLazy.handleRefresh).execute();    
    }
    ngOnDestroy(): void {
   }

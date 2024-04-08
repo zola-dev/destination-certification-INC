@@ -33,6 +33,10 @@ export class StateManagementService {
   appStateCast$ = this.appStateUpdate.asObservable().pipe(shareReplay(1));
   public appState:any|null=null;
 
+  public toDoConfigUpdate:BehaviorSubject<any|null>=new BehaviorSubject<any|null>(null);
+  toDoConfigCast$ = this.toDoConfigUpdate.asObservable().pipe(shareReplay(1));
+  public toDoConfig:any|null=null;
+
 public getLS(key){
     if(key!=='token'&&key!='authKey'){
       if(this[key]){
@@ -48,7 +52,6 @@ public getLS(key){
           var token = localStorage.getItem(key);
           this.update(key,token);
           this[key+'Cast$'].subscribe(x => this[key] = x);
-          console.log(key,` set: `,this[key]);
           return this[key];
         } 
     }
@@ -65,7 +68,6 @@ public saveData(key: string, value: any) {
   if(key!=='token'){
     value=JSON.stringify(value);
   }
-  // console.log(key,` stored`);
   localStorage.setItem(key,value);
 }
 public removeData(key: string) {

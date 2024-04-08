@@ -1,47 +1,44 @@
 <div id="addToDo" class="w-100 d-flex justify-content-center">
-            <form [formGroup]="toDoForm">              
-                    <input 
-                    id="name" 
-                    spellcheck="false"
-                    formControlName="name" 
-                    autocomplete="off"
-                    (clickOutside)="Outside('name')"   
-                    (click)="Inside('name')"
-                    (input)="type()"
-                    />
-                    <label
-                    [ngClass]="[
-                    name ? 'label' : 'required-label labelUp']"                
-                    class="required-label"              
-                    for="name">add ToDO name</label>
-                        <div
-                        class="fa-regular"
-                        [ngClass]=" 
-                        {
-                          'fa-circle-xmark':!this.completed,
-                          'fa-circle-check':this.completed
-                        }"
-                        (click)="complete()">
-                        </div>
-                  <button 
-                  [ngClass]=" 
-                  {
-                    'emptyToDo':   
-                    toDoForm.controls.name.errors&&
-                    toDoForm.controls.name.errors?.invalidLength==0,
-                    'toDo2Long':   
-                    toDoForm.controls.name.errors&&
-                    toDoForm.controls.name.errors?.invalidLength>5,
-                    'uncompleted':   
-                    !toDoForm.controls.name.errors&&
-                    !this.completed,
-                    'completed':   
-                    !toDoForm.controls.name.errors&&
-                    this.completed
-                  }"
-                  type="submit" 
-                  (click)="handleSubmit()"
-                  [disabled]="
-                  (toDoForm.controls.name.invalid)">Store ToDo</button>  
-               </form>
+  <form [formGroup]="toDoForm">
+    <input
+      id="name"
+      spellcheck="false"
+      formControlName="name"
+      autocomplete="off"
+      (clickOutside)="Outside('name')"
+      (click)="Inside('name')"
+      (input)="type()"
+    />
+    <label
+      [ngClass]="[name ? 'label' : 'required-label labelUp']"
+      class="required-label"
+      for="name"
+      >add ToDO name</label
+    >
+    <div
+      class="fa-regular"
+      [ngClass]="{
+        'fa-circle-xmark': !this.completed,
+        'fa-circle-check': this.completed
+      }"
+      (click)="complete()"
+    ></div>
+    <button
+      [ngClass]="{
+        emptyToDo:
+          toDoForm.controls.name.errors &&
+          toDoForm.controls.name.errors?.invalidLength == 0,
+        toDo2Long:
+          toDoForm.controls.name.errors &&
+          toDoForm.controls.name.errors?.invalidLength > 5,
+        uncompleted: !toDoForm.controls.name.errors && !this.completed,
+        completed: !toDoForm.controls.name.errors && this.completed
+      }"
+      type="submit"
+      (click)="handleSubmit()"
+      [disabled]="toDoForm.controls.name.invalid"
+    >
+      Store ToDo
+    </button>
+  </form>
 </div>

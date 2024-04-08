@@ -17,6 +17,9 @@ export class CloseService {
     this.state.removeData('authKey');
     this.state.removeData('toDo');
     this.state.removeData('users');
+    this.state.removeData('tempArr');
+    this.state.removeData('appState');
+    localStorage.removeItem('toDoConfig')
     let appWrapper=document.getElementById('appWrapper');
     appWrapper.classList.add('hideGlobal');
     setTimeout(async ()=>{

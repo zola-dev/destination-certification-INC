@@ -2,7 +2,18 @@
   id="serechToDo"
   class="bg-light rounded border border-light d-flex align-items-center justify-content-center position-relative"
 >
-  <div class="fw-bold fa-solid fa-magnifying-glass position-absolute"></div>
+  <div class="fw-bold fa-solid fa-magnifying-glass position-absolute"
+  [ngStyle]="{
+    color:
+    this.appState
+    &&this.appState.typing
+    &&this.toDo
+    &&this.toDo.length>0
+    &&this.tempArr
+    &&this.tempArr.length!=this.toDo.length
+    ?'#28529f':''
+  }"
+></div>
   <form [formGroup]="searchToDoForm">
     <input
       spellcheck="false"

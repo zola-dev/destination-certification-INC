@@ -1,45 +1,39 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import{environment} from '../../../environments/environment';
+import { nextApis } from '../global-constants/requestUrls'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  url = environment.nextApiUrl;
   constructor(
     private httpClient: HttpClient,
 
   ) { }
   login(data: any) {
-    return this.httpClient.post(this.url+"/api/login",data,{
+    return this.httpClient.post(nextApis.login,data,{
       headers: new HttpHeaders().set('Content-Type', "application/json")
     });
   }
   addToDo(data: any) {
-    return this.httpClient.post(this.url+"/api/addToDo",data,{
+    return this.httpClient.post(nextApis.addToDo,data,{
       headers: new HttpHeaders().set('Content-Type', "application/json")
     });
-  }
-  getToDo() {
-    return this.httpClient.get(this.url+"/api/addToDo");
   }
   updateToDo(data: any) {
-    return this.httpClient.patch(this.url+"/api/updateToDo",data,{
+    return this.httpClient.patch(nextApis.updateToDo,data,{
       headers: new HttpHeaders().set('Content-Type', "application/json")
     });
   }
-  deleteToDo(data){
+  deleteToDo(id){
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // 'Authorization': 'Bearer my-token',
       }),
       body: {   
-        data: data
+        id
       },
     };
-      console.log(data)
-      return this.httpClient.delete(this.url + "/api/deleteToDo",options
+      return this.httpClient.delete(nextApis.deleteToDo,options
   )}
 }

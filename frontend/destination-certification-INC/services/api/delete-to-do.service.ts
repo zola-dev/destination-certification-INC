@@ -12,10 +12,10 @@ export class DeleteToDoService {
   ) { }
   async execute(data) {
     this.ngxService.start();
-  (await this.weLoveLazy.ApiService).deleteToDo(data.item).subscribe({
+  (await this.weLoveLazy.ApiService).deleteToDo(data.item.id).subscribe({
     next: async (response:any)=>{
     this.ngxService.stop();
-    // (await this.weLoveLazy.updateToDoLSService).execute(data,response.message);
+    (await this.weLoveLazy.modifyLSService).execute(data,response.message);
    },
     error: (error:any)=>{
     this.ngxService.stop();

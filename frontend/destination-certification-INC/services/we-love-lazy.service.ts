@@ -5,6 +5,9 @@ import { Injectable, Injector, ProviderToken } from '@angular/core';
 import { ApiService } from './api.service';
 import { CloseService } from './close.service';
 import { SwallMessagesService } from './swall-messages.service';
+import { HandleRefreshService } from './handle-refresh.service';
+import { ClTimeoutService } from './cl-timeout.service';
+
 
 //api imports
 import { QueryAuthService } from './query-auth.service';
@@ -14,13 +17,20 @@ import { UpdateToDoService } from './api/update-add-to-do.service';
 
 //Local Storage imports
 import { LoginLSService } from './local-storage/login-ls.service';
-import { AddToDoLSService } from './local-storage/add-to-do-ls.service';
-import { UpdateToDoLSService } from './local-storage/update-to-do-ls.service';
+import { InsertLSService } from './local-storage/insert-ls.service';
+import { ModifyLSService } from './local-storage/modify-ls.service';
 
 //imports for lazy-loading Components without routes  
 import { AddComponentService } from './ng-container/add-component.service';
 import { SearchComponentService } from './ng-container/search-component.service';
 import { DeleteToDoService } from './api/delete-to-do.service';
+
+//constants
+import { TableConfigsService } from './global-constants/table-configs.service';
+
+//animations
+import { ToggleService } from './animations/toggle.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +40,8 @@ export class WeLoveLazyService {
    private _ApiService: Promise<ApiService>=null;
    private _close: Promise<CloseService>=null;
    private _swallMessagesService: Promise<SwallMessagesService>=null;
+   private _handleRefresh: Promise<HandleRefreshService>=null;
+   private _clTimeoutService: Promise<ClTimeoutService>=null;
 
    //api calls
    private _queryAuth: Promise<QueryAuthService>=null;
@@ -40,8 +52,8 @@ export class WeLoveLazyService {
 
    //Local Storage services
    private _loginLSService: Promise<LoginLSService>=null;
-   private _addToDoLSService: Promise<AddToDoLSService>=null;
-   private _updateToDoLSService: Promise<UpdateToDoLSService>=null;
+   private _insertLSService: Promise<InsertLSService>=null;
+   private _modifyLSService: Promise<ModifyLSService>=null;
 
    //services for lazy-loading Components without routes 
    private _addDoToComponent: Promise<AddComponentService>=null;
@@ -49,6 +61,14 @@ export class WeLoveLazyService {
 
    //gsap
    public _gsap="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+   public _gsapScroll="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js";
+
+   
+   //constants
+   private _tableConfigs: Promise<TableConfigsService>=null;
+
+   //animations
+   private _toggle: Promise<ToggleService>=null;
 
   constructor(
     private injector: Injector,
@@ -85,6 +105,25 @@ export class WeLoveLazyService {
       return this._swallMessagesService;
     }   
   }
+  get handleRefresh(){
+    if(this._handleRefresh){
+      return this._handleRefresh
+    }else{
+      this._handleRefresh = this.get<HandleRefreshService>(() =>
+      import('./handle-refresh.service').then((m) => m.HandleRefreshService));
+      return this._handleRefresh;
+    }   
+  }
+  get clTimeoutService(){
+    if(this._clTimeoutService){
+      return this._clTimeoutService
+    }else{
+      this._clTimeoutService = this.get<ClTimeoutService>(() =>
+      import('./cl-timeout.service').then((m) => m.ClTimeoutService));
+      return this._clTimeoutService;
+    }   
+  }
+  
 
   //api gets
   get queryAuth(){
@@ -143,22 +182,22 @@ export class WeLoveLazyService {
       return this._loginLSService;
     }   
   }
-  get addToDoLSService(){
-    if(this._addToDoLSService){
-      return this._addToDoLSService
+  get insertLSService(){
+    if(this._insertLSService){
+      return this._insertLSService
     }else{
-      this._addToDoLSService = this.get<AddToDoLSService>(() =>
-      import('./local-storage/add-to-do-ls.service').then((m) => m.AddToDoLSService));
-      return this._addToDoLSService;
+      this._insertLSService = this.get<InsertLSService>(() =>
+      import('./local-storage/insert-ls.service').then((m) => m.InsertLSService));
+      return this._insertLSService;
     }   
   }
-  get updateToDoLSService(){
-    if(this._updateToDoLSService){
-      return this._updateToDoLSService
+  get modifyLSService(){
+    if(this._modifyLSService){
+      return this._modifyLSService
     }else{
-      this._updateToDoLSService = this.get<UpdateToDoLSService>(() =>
-      import('./local-storage/update-to-do-ls.service').then((m) => m.UpdateToDoLSService));
-      return this._updateToDoLSService;
+      this._modifyLSService = this.get<ModifyLSService>(() =>
+      import('./local-storage/modify-ls.service').then((m) => m.ModifyLSService));
+      return this._modifyLSService;
     }   
   }
 
@@ -182,31 +221,29 @@ export class WeLoveLazyService {
     }    
   }
 
-  //links
-  loadStyle(styleName: string) {
-    console.log(this[styleName]);
-    //const head = this.document.getElementsByTagName('head')[0];
-    const head = document.getElementsByTagName('head')[0];
-    //let themeLink = this.document.getElementById(
-      let styleNameEl = document.getElementById(styleName) as HTMLLinkElement;
-    if (styleNameEl) {
-      console.log(styleName, "exist");
-      // styleNameEl.href = this[styleName];
-      // styleNameEl.media = 'all';
-      //themeLink.onload = "this.media='all'";
-    } else {
-      console.log(styleName, "created");
-      //const style = this.document.createElement('link');
-      const style = document.createElement('link');
-      style.id = styleName;
-      style.rel = 'stylesheet';
-      style.href = `${this[styleName]}`;
-      style.media ='all';
-      //style.onload ="this.media='all'";
-
-      head.appendChild(style);
-    }
+  //constants
+  get tableConfigs(){
+    if(this._tableConfigs){
+      return this._tableConfigs
+    }else{
+      this._tableConfigs = this.get<TableConfigsService>(() =>
+      import('./global-constants/table-configs.service').then((m) => m.TableConfigsService));
+      return this._tableConfigs;
+    }    
   }
+
+  //animations
+  get toggle(){
+    if(this._toggle){
+      return this._toggle
+    }else{
+      this._toggle = this.get<ToggleService>(() =>
+      import('./animations/toggle.service').then((m) => m.ToggleService));
+      return this._toggle;
+    }   
+  }
+
+  //JS
   loadJS(jsName: string) {
     return new Promise<any>((resolve, reject) => {
     console.log(this[jsName]);
@@ -233,43 +270,5 @@ export class WeLoveLazyService {
     }
   });
   }
-  gsap(data){
-    let el = document.getElementById(data.id);
-    let timeline = data.gsap.timeline({ paused: false });
-    timeline.to(el, {
-        y: data.y,
-        duration: .7, 
-        ease: "power1.inOut",
-        // scrollTrigger: {
-        //     trigger: '#header', 
-        //     start: '20% top', 
-        //     end: '20% top',
-        //     // markers:true,      
-        //     scrub: 1, 
-        //     delay:1,
-        //     snap: {
-        //     duration: { min: 0.2, max: 3 },
-        //     ease:"power1.out", 
-        //     }
-        // },
-        onComplete: () => {
-          if(!data.time){
-            data.time=0;
-          }
-          setTimeout(()=>{  
-          if(data.height){
-          el.style.height=`${data.height}`;
-          //el.setAttribute("style", data.style);
-          }
-          if(data.transition){
-            el.style.transition=`${data.transition}`;
-            }
-            if(data.zIndex){
-              el.style.zIndex=`${data.zIndex}`;
-              }
-          }, data.time); 
-          }
-    });
-    return timeline;
-  }
+
 }

@@ -15,15 +15,12 @@ export class AddToDoService {
       next: async (response: any) => {
        this.ngxService.stop();
        data.item.id=response.insertId;
-      (await this.weLoveLazy.addToDoLSService).execute(data,response.message);
+      (await this.weLoveLazy.insertLSService).execute(data,response.message);
       console.log("toDo stored, response (API): : \n",response);
     },
       error: async (error: any) => {
       this.ngxService.stop();
       console.error(error);
-      // if(error.messsage){
-      //   (await this.weLoveLazy.swallMessagesService).tokenInterceptor("error",error.messsage);      
-      // }
     }
   })
 }

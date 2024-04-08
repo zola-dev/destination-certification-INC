@@ -13,10 +13,11 @@
   >
     {{ config.title }}
     <div
-    *ngIf="this.dataSource"
+    *ngIf="this.dataSource||this.tempArr"
       class="typing fw-lighter"
       [ngClass]="
-        this.appState.typing 
+        this.appState
+        &&this.appState.typing 
         &&this.dataSource
         &&this.tempArr &&
         this.dataSource.length != this.tempArr.length
@@ -26,18 +27,21 @@
     >
       Searching results: {{ this.dataSource.length }}
     </div>
+    
     <div
       (click)="searchTable()"
       class="fa-solid fa-magnifying-glass position-fixed"
       [ngStyle]="{
-        right: this.scrollWidth
+        right: this.scrollWidth,
+        color:this.appState&&this.appState.serech?'#28529f':''
       }"
     ></div>
     <div
       (click)="addItem()"
       class="fa-solid fa-plus position-fixed"
       [ngStyle]="{
-        right: this.headerBtn
+        right: this.headerBtn,
+        color:this.appState&&this.appState.add?'#28529f':''
       }"
     ></div>
   </div>
@@ -73,22 +77,37 @@
   <cdk-virtual-scroll-viewport
     itemSize="{{ this.rowHeightPx }}"
     minBufferPx="{{ this.rowHeightPx }}*{{ this.config.rowNO }}"
-    maxBufferPx="{{ this.rowHeightPx }}*{{ this.config.rowNO }}*2"
+    maxBufferPx="{{ this.rowHeightPx }}*{{ this.config.rowNO }}"
     id="scroll_viewport{{ config.id }}"
     [ngStyle]="{
       height: this.viewport
     }"
     #Table
   >
-    <table class="w-100 table table-hover align-middle">
+  <!-- top blur in porgress -->
+    <!-- <div
+    [ngStyle]="{
+      width: this.blurWidth,
+      height: this.blurHeigth
+    }"
+    class="topBlur"></div> -->
+      <table class="w-100 table table-hover align-middle">
       <tbody>
         <tr
           *cdkVirtualFor="let d of this.dataSource; let index = index"
+          [attr.id]="'table-' + j[index]"
           class="fw-bold bg-white"
           [ngStyle]="{
             height: this.rowHeight,
-            'font-size': this.fontSize
-          }"
+            'font-size': this.fontSize,
+            'opacity':
+            index >= this.scroll.start
+            &&index <= this.scroll.end
+            ?1:0,
+            'transition-duration':'.3s',
+            'transition-delay':delay[index]
+          }"        
+   
         >
           <td
             id="td{{ index }}{{ k }}{{ config.id }}"
@@ -98,7 +117,9 @@
           >
             <div *ngIf="k != this.config.clickable.field">
               {{ this.dataSource[index][k] }}
+              <!-- <p [innerHTML]="this.dataSource[index][k].coloredName"></p> -->
             </div>
+
             <div
               *ngIf="k == this.config.clickable.field"
               class="d-flex justify-content-center"
@@ -124,6 +145,13 @@
           </td>
         </tr>
       </tbody>
-    </table>
+      </table>
+      <!-- bottom blur in porgress -->
+    <!-- <div
+    [ngStyle]="{
+      width: this.blurWidth,
+      height: this.blurHeigth
+    }"
+    class="bottomBlur"></div> -->
   </cdk-virtual-scroll-viewport>
 </div>

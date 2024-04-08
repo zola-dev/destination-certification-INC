@@ -11,10 +11,10 @@ export class loginService {
     private ngxService : NgxUiLoaderService
   ) { }
   async execute(data) {
-      //  this.ngxService.start();
-      (await this.weLoveLazy.ApiService).login(data).subscribe({
+       this.ngxService.start();
+       (await this.weLoveLazy.ApiService).login(data).subscribe({
         next: async (response: any) => {
-        // this.ngxService.stop();
+        this.ngxService.stop();
         (await this.weLoveLazy.loginLSService).execute(response);
         this.ngxService.stop();
         console.log("login response (API): \n",response);
