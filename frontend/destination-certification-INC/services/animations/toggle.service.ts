@@ -81,18 +81,18 @@ export class ToggleService {
         y: data.y,
         duration: .7, 
         ease: "power1.inOut",
-        scrollTrigger: {
-            trigger: scrollTrigger, 
-            start: '20% top', 
-            end: '20% top',
-            // markers:true,      
-            scrub: 1, 
-            delay:1,
-            snap: {
-            duration: { min: 0.2, max: 3 },
-            ease:"power1.out", 
-            }
-        },
+        // scrollTrigger: {
+        //     trigger: scrollTrigger, 
+        //     start: '20% top', 
+        //     end: '20% top',
+        //     // markers:true,      
+        //     scrub: 1, 
+        //     delay:1,
+        //     snap: {
+        //     duration: { min: 0.2, max: 3 },
+        //     ease:"power1.out", 
+        //     }
+        // },
         onComplete: () => {
           if(!data.time){
             data.time=0;
