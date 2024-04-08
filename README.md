@@ -15,7 +15,7 @@
     - I've employed **GSP (GreenSock Animation Platform)** for animations.
 
 3. **Service Organization**
-   - Services are thoughtfully divided for ease of testing
+   
    - We've structured them to facilitate the implementation of new features and reusability
    - Notably, some services that aren't immediately required are **lazy-loaded** on demand
 
