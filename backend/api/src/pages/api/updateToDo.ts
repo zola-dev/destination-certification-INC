@@ -15,10 +15,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse,
           id: body.id,
         },
         data: {
-          completed: body.update,
+          completed: body.completed,
         },
       });
-        res.status(200).json({message:`{id=${body.id}\nupdate=${body.update}}`});
+        res.status(200).json({message:`toDo[${body.id}].completed = ${body.completed}`});
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ error: 'Internal Server Error' });

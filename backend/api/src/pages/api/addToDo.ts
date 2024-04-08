@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse,
             completed: body.completed,
           },
       });
-        res.status(200).json({message:`{id:${updatedToDo.id}\nname:${body.name}}\ncompleted:${body.completed}`,insertId:updatedToDo.id });   
+        res.status(200).json({message:`{id:${updatedToDo.id}, name:${body.name}, completed:${body.completed}} posted!`,insertId:updatedToDo.id });   
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ error: 'Internal Server Error' });

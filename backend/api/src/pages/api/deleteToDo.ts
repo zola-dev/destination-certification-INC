@@ -8,16 +8,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse,
   auth(req, res, next); 
   if (req.method === 'DELETE') {
     try {
-      const body = req.body;
-      console.log("delete: ",body);
+      const id = req.body.id;
+      console.log("delete body: ",req.body);
       await prisma.toDo.delete({
         where: {
-          id: body.id,
+          id: id,
         }
       });
-        res.setHeader('Content-Type', 'application/json');
-        res.setHeader('Allow', 'DELETE'); 
-        res.status(200).json({message:`{id=${body.id}`});
+        // res.setHeader('Content-Type', 'application/json');
+        // res.setHeader('Allow', 'DELETE'); 
+        res.status(200).json({message:`toDo[${id}] deleted!`});
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ error: 'Internal Server Error' });

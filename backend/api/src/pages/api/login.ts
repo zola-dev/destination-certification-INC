@@ -38,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           token:'',
         };
         let token=jwt.sign(response, process.env.ACCESS_TOKEN || '', {
-          expiresIn: '2min',
+          expiresIn: '20min',
         });
         response.token=token;
         res.status(200).json(response);
