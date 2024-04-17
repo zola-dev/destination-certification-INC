@@ -22,7 +22,7 @@ import { defaultConfig } from '../global-constants/defaultConfig'
 export class DestinationHomeComponent implements OnInit, OnDestroy {
   public tokenTimer:any;
   @ViewChild("addToDo", { read: ViewContainerRef }) containerAddToDo: ViewContainerRef;
-  @ViewChild("serechToDo", { read: ViewContainerRef }) containerSerechToDo: ViewContainerRef;
+  @ViewChild("searchToDo", { read: ViewContainerRef }) containersearchToDo: ViewContainerRef;
   public toDo:ToDo[]|null=[];
   public tempArr:ToDo[]|null=[];
   public config:any;
@@ -41,8 +41,8 @@ export class DestinationHomeComponent implements OnInit, OnDestroy {
       this.timer.startTimer();
     }else{
       this.queryAuth();
-      // smooth scrolling, 20 transparent fade , animacija
-    }//unsubscribe
+      //+smooth scrolling from GASP
+    }//+unsubscribe
     this.state.tokenTimerCast$.subscribe(tokenTimer => this.tokenTimer = tokenTimer);
     this.state.toDoCast$.subscribe(toDo => this.toDo = toDo);
     this.state.appStateCast$.subscribe(appState => this.appState = appState);
@@ -59,7 +59,7 @@ export class DestinationHomeComponent implements OnInit, OnDestroy {
   async exit(){
     (await((this.weLoveLazy).close)).execute();  
   }
-  async handleRowClicked(e){
+  async handleUpdateItem(e){
     (await this.weLoveLazy.updateToDoService).execute({
       item:{id:e.id,completed:!e.completed},   
       array:{toDo:this.toDo},
@@ -77,15 +77,16 @@ export class DestinationHomeComponent implements OnInit, OnDestroy {
     this.containerAddToDo);
   }
   async handleSearchTable(){
-    this.appState.serech=!this.appState.serech;
+    this.appState.search=!this.appState.search;
     this.state.saveData('appState',this.appState);
     (await this.weLoveLazy.searchComponent).create(
-      "serechToDo",
+      "searchToDo",
     {
       toDo:this.toDo,
-      appState:this.appState
+      appState:this.appState,
+      config:defaultConfig.search
     },
-    this.containerSerechToDo); 
+    this.containersearchToDo); 
   }
   async handleDeleteItem(e){
     (await this.weLoveLazy.deleteToDoService).execute({

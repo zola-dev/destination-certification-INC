@@ -1,5 +1,5 @@
 @import '../global/fa-solid-blue-gray.scss';
-#serechToDo{
+#searchToDo{
     transform: translate(0,-16vh);
     transition: .3s;
     width: 60vh;
@@ -16,4 +16,30 @@ input{
     border: none;
     caret-color: $muted;
     user-select: none;
+}
+form>div{
+    z-index: 2;
+    -webkit-user-select: none;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    display: flex;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    transition: .3s ease-out;
+}
+form>div:nth-of-type(1){
+  height: 6vh;
+  font-size: 2vh;
+  line-height: 2vh;
+  right: 4vw;
+}
+form>div:nth-of-type(2){
+  height: 7.5vh;
+  font-size: 3vh;
+  line-height: 3vh;
+  right: 2vw;
 }

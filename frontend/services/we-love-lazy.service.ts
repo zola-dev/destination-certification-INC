@@ -30,6 +30,7 @@ import { TableConfigsService } from './global-constants/table-configs.service';
 
 //animations
 import { ToggleService } from './animations/toggle.service';
+// import { LettersWordsStylingService } from './animations/letters-words-styling.js';
 
 
 @Injectable({
@@ -62,7 +63,10 @@ export class WeLoveLazyService {
    //gsap
    public _gsap="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
    public _gsapScroll="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js";
-
+   
+   //JS
+   public _deqaf="https://unpkg.com/deqaf/index.js"
+   public _lettersWordsStyling="letters-words-styling.js.js"
    
    //constants
    private _tableConfigs: Promise<TableConfigsService>=null;

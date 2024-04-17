@@ -33,7 +33,7 @@
       class="fa-solid fa-magnifying-glass position-fixed"
       [ngStyle]="{
         right: this.scrollWidth,
-        color:this.appState&&this.appState.serech?'#28529f':''
+        color:this.appState&&this.appState.search?'#28529f':''
       }"
     ></div>
     <div
@@ -115,9 +115,11 @@
             [ngStyle]="{ width: this.rowWidth }"
             *ngFor="let k of this.ObjKeys"
           >
-            <div *ngIf="k != this.config.clickable.field">
-              {{ this.dataSource[index][k] }}
-              <!-- <p [innerHTML]="this.dataSource[index][k].coloredName"></p> -->
+            <div *ngIf="k != this.config.clickable.field" class=letter>
+              <!-- {{ this.dataSource[index][k] }} -->
+              <div *ngIf="k=='name'" id="letters_{{this.dataSource[index]['id']}}">{{this.dataSource[index][k]}}</div>
+              <div *ngIf="k!='name'">{{this.dataSource[index][k]}}</div>
+              <section *ngIf="k=='name'" id="table_{{config.id}}_colorize_{{this.dataSource[index]['id']}}"></section>
             </div>
 
             <div

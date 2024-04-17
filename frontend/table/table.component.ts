@@ -59,7 +59,7 @@ public blurWidth :any;
     this.appState=this.data.appState;
     this.tempArr=this.data.tempArr;
     this.state.toDoCast$.subscribe((toDo) => {
-      if(toDo&&this.dataSource&&toDo.length>this.dataSource.length
+      if(toDo&&this.dataSource&&toDo.length>this.dataSource.length&&this.appState&&!this.appState.typing
         ){
         console.log("scrolled to",toDo.length);
         this.scrollToIndex({target:toDo.length}); 
@@ -98,6 +98,7 @@ public blurWidth :any;
         }
       }  
     }
+    console.log("titles created: ",this.titles)
   } 
   ngAfterViewInit(): void {       
     this.adjustWidth();

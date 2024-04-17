@@ -1,5 +1,5 @@
 <div
-  id="serechToDo"
+  id="searchToDo"
   class="bg-light rounded border border-light d-flex align-items-center justify-content-center position-relative"
 >
   <div class="fw-bold fa-solid fa-magnifying-glass position-absolute"
@@ -23,6 +23,44 @@
       autocomplete="off"
       (input)="type()"
     />
+    <div 
+    [ngStyle]="{
+      color:
+      this.config
+      &&this.config.caseSensitive
+      ?'#28529f':'#919191',
+      zoom:
+      this.config
+      &&this.config.caseSensitive
+      ?'1.05':'1'
+    }"
+    [ngClass]="
+      this.config
+      &&this.config.showOptions.caseSensitive
+      ? 'globalShow'
+      : 'hideGlobal'
+     "
+     (click)="caseSensitive()"
+    >Aa</div>
+    <div 
+    [ngStyle]="{
+      color:
+      this.config
+      &&this.config.wildCard
+      ?'#28529f':'#919191',
+      zoom:
+      this.config
+      &&this.config.wildCard
+      ?'1.05':'1'
+    }"
+    [ngClass]="
+      this.config
+      &&this.config.showOptions.wildCard
+      ? 'globalShow'
+      : 'hideGlobal'
+     "
+     (click)="wildCard()"
+    >*</div>
   </form>
 </div>
 

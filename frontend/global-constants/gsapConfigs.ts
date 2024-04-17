@@ -6,7 +6,7 @@ export const gsapConfigs = {
         tlName:'tlAdd'
     },
     searchToDo:{
-        id:'serechToDo',
+        id:'searchToDo',
         y:1300/window.innerHeight,
         height:'7.14286vh',
         transition:0,

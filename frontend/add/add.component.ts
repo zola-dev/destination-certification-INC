@@ -42,10 +42,13 @@ export class AddComponent implements OnInit, AfterViewInit, OnDestroy {
   this.state.toDoCast$.subscribe(toDo => this.toDo = toDo);
   this.state.appStateCast$.subscribe((appState) => {
     if(appState&&this.add!=appState.add){
-    this.toggle.execute(appState.add,gsapConfigs.addToDo.tlName)
+    this.toggle.execute(appState.add,gsapConfigs.addToDo.tlName);
+    this.add = appState.add;
+    }
+    if(appState&&!appState.add){
+      this.toDoForm.reset();
     }
     this.appState = appState;
-    this.add = appState.add;
   });
   this.toggle.storeTl((gsapConfigs.addToDo));
   this.toDoForm = this.formBulider.group({
@@ -100,7 +103,7 @@ export class AddComponent implements OnInit, AfterViewInit, OnDestroy {
   return { invalidLength: value.length };
 }
 type(){
-  if(this.toDoForm.value.name.length>20){
+  if(this.toDoForm.value.name&&this.toDoForm.value.name.length>20){
     this.toDoForm.patchValue({name: this.toDoForm.value.name.slice(0, -1)});
   }
 }
