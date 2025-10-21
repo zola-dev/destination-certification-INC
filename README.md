@@ -44,5 +44,5 @@
 
 - **Implemented** a **functional approach** and other modern features alongside the **class-based** **React components**.
 - **Functional code** is fully **commented** but **working** and ready for use.
-- **Easy switch** between **class-based** && **functional** implementations by uncommenting the **functional code** && commenting the **class-based**.
+- **Easy to switch** between **class-based** and **functional** implementations by uncommenting/commenting the **functional code**/ **class-based**.
 - **Demonstrates** flexibility in **React development** with both **paradigms** supported.
