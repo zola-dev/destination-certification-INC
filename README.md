@@ -29,6 +29,9 @@
 - **Add Users** **functionality** alongside **Delete** and **Edit**.
 - **Wildcard search option** for **flexible filtering**.
 - **Case-sensitive toggle** for **search**.
+- Used **Tailwind CSS** for **styling** the **application**.
+- **Imported clsx from "clsx"** to make **Tailwind** **cleaner** and **easier to maintain**.
+- Used **RxJS** to elevate **handling subscriptions** and **store state**.
 
 **Services**
 
