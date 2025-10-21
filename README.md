@@ -1,64 +1,38 @@
-# destination-certification-INC
+**Description**
 
+**TransPerfect** is a **React** (**Class Components**) **user management** and **search application**. The **project** demonstrates **fetching**, **filtering**, and **displaying users** from a public **API**, implementing basic **table actions**, and adding **bonus features** for enhanced **usability**.
 
-**Frontend Structure: A Brief Overview:**
+**Task Requirements Completed**
 
-**destination-certification-INC** folder from my project directly corresponds to the assignment requirements. Let's delve into the details:
+**Data Fetching**
 
-1. **Main Component: destination-home**
-     - This component is standalone and is **lazy-loaded**
-     - Within **destination-home**, there's a child component called **table**, which loads immediately
-     - **destination-home** includes two other lazy-loaded components: **add-component** and **search-component**
-     - These components load dynamically when the user clicks the plus or search icon within the table
+- **Fetched users** from **JSONPlaceholder**.
+- **Showed** a **loading spinner** while **fetching data**.
+- **Stored** the **fetched data** in the **App component** **state**.
 
-2. **Animations with GSP**
-    - I've employed **GSP (GreenSock Animation Platform)** for animations.
+**Data Display**
 
-3. **Service Organization**
-   
-   - We've structured them to facilitate the implementation of new features and reusability
-   - Notably, some services that aren't immediately required are **lazy-loaded** on demand
+- **Passed data** to the **UserTable** **child component**.
 
-4. **Data Management**
-   - Data from the database is stored in local storage
-   - We manage this data using the **StateManagementService**
+**Data Filtering**
 
-5. **TokenInterceptor :**
-   - When a request is made, the interceptor checks if a user token exists in the local storage
-   - If a token is found, it injects it into the request headers as an Authorization bearer token
+- **Created** a **Filter component** for **user input**.
+- **Filtered data** by **name** or **email**.
 
-6. **Separation of Concerns**
-   - The services API and local storage are intentionally separated
-   - This design allows us to introduce additional features (such as websockets) independently and with ease
+**Table Actions**
 
-In conclusion, this assignment has been crafted with the intention of enabling feature implementation and efficient service reuse. 
+- **Delete user** from the **list**.
+- **Edit user** inline in the **table**.
 
+**Extra / Bonus Features Implemented**
 
-**Backend Overview:** 
+- **Add Users** **functionality** alongside **Delete** and **Edit**.
+- **Wildcard search option** for **flexible filtering**.
+- **Case-sensitive toggle** for **search**.
 
-**Node.js** server runs the **Next.js** dist these are the key components:
+**Services**
 
-1. **Routes:**
-
-   - **Login:** Handles user authentication
-
-   - **Update**: Allows modification of existing data
-
-   - **Delete:** Removes records from our system
-
-   - **Add:** Adds new data entries
-
-2. **Middleware:**
-
-   - **dotenv:** For managing environment variables
-
-   - **jsonwebtoken:** Facilitates secure token-based authentication
-
-   - **NextCors:** Enables Cross-Origin Resource Sharing (CORS) for communication with our frontend
-
-In summary, our backend architecture is designed for efficiency, security, and seamless integration with our Angular frontend.
-
-****Explore the Assignment from link below for testing:****
-
-****https://www.shebs-braids.area36000.com/destination-certification-INC?authKey=zaYp7RlaY**** 
-
+- **HttpClientService** **handles** **HTTP requests**.
+- **UserService** **manages** **user operations**.
+- For this **demo**, uses **JSONPlaceholder** **mock API**.
+- **Easily switchable** to a **real backend API**.
