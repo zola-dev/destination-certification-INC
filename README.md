@@ -36,3 +36,10 @@
 - **UserService** **manages** **user operations**.
 - For this **demo**, uses **JSONPlaceholder** **mock API**.
 - **Easily switchable** to a **real backend API**.
+  
+ **Functional Approach Implementation**
+
+- **Implemented** a **functional approach** alongside the **class-based** **React components**.
+- **Functional code** is fully **commented** but **working** and ready for use.
+- **Easy to switch** between **class-based** and **functional** implementations by uncommenting the **functional code**.
+- **Demonstrates** flexibility in **React development** with both **paradigms** supported.
